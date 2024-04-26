@@ -30,6 +30,7 @@ function CreateTaskCard({
           placeholder="Date and Time"
           type="datetime-local"
           errorMessage={errors?.endDate}
+          min={new Date().toISOString().slice(0, 16)}
         />
         <Textarea
           rows={8}

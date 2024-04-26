@@ -57,6 +57,16 @@ function CreateTask() {
         description: "",
         endDate: "",
       }}
+      validate={(values) => {
+        const errors = {};
+        const time=new Date(values.endDate).getTime();
+        const currentTime=new Date().getTime();
+        if(time<currentTime){
+          errors.endDate="Time must be greater than current time";
+        }
+        return errors;
+      }}
+
       onSubmit={(values, { setSubmitting, resetForm }) => {
         console.log(values);
         createTaskHandler(values)
@@ -96,6 +106,7 @@ function CreateTask() {
               onChange={handleChange}
               name="endDate"
               type="datetime-local"
+              min={new Date().toISOString().slice(0, 16)}
               className={
                 "outline-none border-slate-200 border-2 outline-2 focus:border-none focus:outline-blue-400"
               }
