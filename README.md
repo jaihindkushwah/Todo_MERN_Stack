@@ -66,7 +66,7 @@ Start the Client
 ![](https://github.com/jaihindkushwah/Todo_MERN_Stack/blob/main/screenshots/create_task_in_mobile.jpeg)
 ### Update task
 ![](https://github.com/jaihindkushwah/Todo_MERN_Stack/blob/main/screenshots/update_task%20in_web.jpeg)
-### View Other user Profile
+### View user Profile
 ![](https://github.com/jaihindkushwah/Todo_MERN_Stack/blob/main/screenshots/profile.jpeg)
 ## Made By
 
