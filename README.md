@@ -62,6 +62,8 @@ Start the Client
 ### Create Task
 ![](https://github.com/jaihindkushwah/Todo_MERN_Stack/blob/main/screenshots/laptop_view.jpeg)
 ![](https://github.com/jaihindkushwah/Todo_MERN_Stack/blob/main/screenshots/create_task_in_mobile.jpeg)
+### Reorder task using drag
+![] (https://github.com/jaihindkushwah/Todo_MERN_Stack/blob/main/screenshots/drag_reoder.gif)
 ### Update task
 ![](https://github.com/jaihindkushwah/Todo_MERN_Stack/blob/main/screenshots/update_task%20in_web.jpeg)
 ### View Other user Profile
