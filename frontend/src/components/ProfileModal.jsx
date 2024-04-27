@@ -9,6 +9,7 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
+  Text,
   useDisclosure,
 } from "@chakra-ui/react";
 import React from "react";
@@ -23,27 +24,22 @@ function ProfileModal({ children, user }) {
       >
         {children}
       </MenuItem>
-
-      <Modal isOpen={isOpen} onClose={onClose}>
+      <Modal size={"sm"} isCentered isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
-        <ModalContent className="flex flex-col justify-center items-center">
-          <ModalHeader>
-            <Avatar name={user.name} src={user.avatar} size={{ base: "sm", md: "xl" }}/>
-          </ModalHeader>
-
+        <ModalContent height={"360px"}>
+          <ModalHeader
+          fontSize={"36px"}
+          fontFamily={"Work sans"}
+          display={"flex"}
+          justifyContent={"center"}
+          >{user.name}</ModalHeader>
           <ModalCloseButton />
-          <ModalBody>
-            <p className="text-[14px] sm:text-[16px]">
-              <span className="font-semibold">Name: </span>
-              {user.name}
-            </p>
-            <p className="text-[14px] sm:text-[16px]">
-              <span className="font-semibold">Email: </span>
-              {user.email}
-            </p>
+          <ModalBody display={"flex"} flexDir={"column"} alignItems={"center"} justifyContent={"space-between"}>
+            <Avatar borderRadius={"full"} boxSize={"120px"} src={user.pic} alt={user.name}></Avatar>
+            <Text fontSize={"22px"} fontFamily={"Work sans"}>{user.email}</Text>
           </ModalBody>
-          <ModalFooter className="flex self-end">
-            <Button colorScheme="red" mr={3} onClick={onClose}>
+          <ModalFooter>
+            <Button colorScheme='blue' mr={3} onClick={onClose}>
               Close
             </Button>
           </ModalFooter>
