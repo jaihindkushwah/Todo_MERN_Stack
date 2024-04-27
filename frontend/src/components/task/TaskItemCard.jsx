@@ -16,7 +16,7 @@ import axios from "axios";
 import { UserState } from "../../context/AuthProvider";
 import { TaskState } from "../../context/TaskProvider";
 
-function TaskItemCard({ task }) {
+function TaskItemCard({ task, className, ...props }) {
   const [isLoading, setIsLoading] = useState();
   const { name, description, endDate, status, createdAt } = task;
   const { user } = UserState();
@@ -109,8 +109,11 @@ function TaskItemCard({ task }) {
 
   return (
     <div
-      className=" bg-slate-400 shadow-md cursor-pointer hover:shadow-lg
-     hover:shadow-slate-500 shadow-slate-500  rounded-3xl"
+      className={
+        " bg-slate-400 shadow-md cursor-pointer hover:shadow-lg hover:shadow-slate-500 shadow-slate-500  rounded-3xl " +
+        className
+      }
+      {...props}
     >
       <Card width={{ base: "100%" }} className="p-1 sm:p-4">
         <CardBody width={{ base: "100%" }} padding={{ base: "1", md: "6" }}>

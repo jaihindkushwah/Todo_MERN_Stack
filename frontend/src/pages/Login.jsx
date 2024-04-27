@@ -41,7 +41,7 @@ function Login() {
   };
 
   return (
-    <div className="w-screen h-screen flex justify-center items-center bg-slate-200">
+    <div className={`w-screen h-screen flex justify-center items-center bg-gradient-to-r from-slate-300 to-slate-200`}>
       <Formik
         validationSchema={loginSchema}
         initialValues={{
@@ -57,7 +57,7 @@ function Login() {
         }}
       >
         {({ handleChange, handleSubmit, isSubmitting, values, errors }) => (
-          <FormContainer title={"Login"}>
+          <FormContainer title={"Login"} >
             <CustomInput
               value={values.email}
               onChange={handleChange}

@@ -1,27 +1,49 @@
-import React from "react";
+import React, { useRef } from "react";
 import TaskItemCard from "./task/TaskItemCard";
-import { Reorder } from "framer-motion";
-import { TaskState } from "../context/TaskProvider";
 
+
+import { TaskState } from "../context/TaskProvider";
 
 function TodoListRender() {
   // const [items, setItems] = React.useState(data);
   // console.log(items);
-  const {taskData,setTaskData}=TaskState();
+  const { taskData, setTaskData } = TaskState();
+  const dragTask = useRef(0);
+  const draggedOverTask = useRef(0);
+  const handleSort = () => {
+    const tasksClone = [...taskData];
+    const temp = tasksClone[dragTask.current];
+    tasksClone[dragTask.current] = tasksClone[draggedOverTask.current];
+    tasksClone[draggedOverTask.current] = temp;
+    setTaskData(tasksClone);
+  };
+
   return (
     <div className=" flex-1 bg-slate-100 rounded p-1 sm:p-5">
-      <h1 className=" text-2xl sm:text-3xl font-bold text-center mb-4">
+      <h1 className=" text-2xl sm:text-3xl font-bold text-center mb-6">
         Tasks
       </h1>
-      
-      <Reorder.Group className="flex flex-col justify-center items-center gap-4" axis="y" layoutScroll values={taskData} onReorder={setTaskData}>
-        {taskData?.length===0 && <p className="text-center text-[16px] text-orange-500">No tasks found</p>}
-        {taskData?.map((item) => (
-          <Reorder.Item key={item._id} value={item}>
-            <TaskItemCard key={item.email} task={item} />
-          </Reorder.Item>
+      <div
+        className="flex flex-wrap justify-around items-center"
+      >
+        {taskData?.length === 0 && (
+          <p className="text-center text-[16px] text-orange-500">
+            No tasks found
+          </p>
+        )}
+        {taskData?.map((item, index) => (
+            <TaskItemCard
+              draggable
+              onDragStart={() => (dragTask.current = index)}
+              onDragEnter={() => (draggedOverTask.current = index)}
+              onDragEnd={handleSort}
+              onDragOver={(e) => e.preventDefault()}
+              key={item._id}
+              task={item}
+              className={"mb-5"}
+            />
         ))}
-      </Reorder.Group>
+      </div>
     </div>
   );
 }

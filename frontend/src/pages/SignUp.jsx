@@ -43,7 +43,7 @@ function SignUp() {
     }
   };
   return (
-    <div className="w-screen h-screen flex justify-center items-center bg-slate-200">
+    <div className="w-screen h-screen flex justify-center items-center bg-gradient-to-r from-slate-300 to-slate-200">
       <Formik
         validationSchema={registerSchema}
         initialValues={{

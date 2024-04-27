@@ -44,7 +44,7 @@ function Dashboard() {
   };
 
   return (
-    <>
+    <div className="bg-hero-pattern bg-cover bg-no-repeat">
       <TopBar
         searchInput={searchInput}
         searchHandler={searchHandler}
@@ -57,7 +57,7 @@ function Dashboard() {
           <CreateTask />
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
