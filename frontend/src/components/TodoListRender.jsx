@@ -24,7 +24,7 @@ function TodoListRender() {
         Tasks
       </h1>
       <div
-        className="flex flex-wrap justify-around items-center"
+        className="flex flex-wrap justify-around items-center ease-in delay-1000"
       >
         {taskData?.length === 0 && (
           <p className="text-center text-[16px] text-orange-500">

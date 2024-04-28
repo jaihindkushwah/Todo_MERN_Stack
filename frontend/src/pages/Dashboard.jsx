@@ -6,11 +6,13 @@ import CreateTask from "../components/task/CreateTask";
 import axios from "axios";
 import { UserState } from "../context/AuthProvider";
 import { TaskState } from "../context/TaskProvider";
+import { useToast } from "@chakra-ui/react";
 
 
 function Dashboard() {
   const { user } = UserState();
   const [searchInput, setSearchInput] = useState("");
+  const toast=useToast();
 
   const {taskData,setTaskData}=TaskState();
   useEffect(() => {
@@ -39,6 +41,17 @@ function Dashboard() {
     const searchedData=taskData.filter((task) => {
       return task.name.toLowerCase().includes(searchInput.toLowerCase()) || task.description.toLowerCase().includes(searchInput.toLowerCase());
     })
+    if(searchedData.length===0){
+      toast({
+        title: "Task Not Found",
+        description: "No Task Found",
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+        position: "top-right",
+    });
+
+    }
     setTaskData([...searchedData,...taskData.filter((task) => !searchedData.includes(task))]);
     setSearchInput("");
   };
