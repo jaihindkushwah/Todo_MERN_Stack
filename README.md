@@ -15,6 +15,11 @@ Uses Node js for sever and stores user details in encrypted format in Mongo DB D
 
 (https://todo-mern-stack-dfoc.onrender.com)
 
+## Guest login
+Email : admin@gmail.com
+
+Password: Admin@1245
+
 ## Run Locally
 
 Clone the project
