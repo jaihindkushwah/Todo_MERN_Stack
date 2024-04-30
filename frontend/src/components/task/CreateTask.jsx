@@ -12,7 +12,7 @@ import { TaskState } from "../../context/TaskProvider";
 function CreateTask() {
   const { user } = UserState();
   const toast = useToast();
-  const {setTaskData,taskData } = TaskState();
+  const { setTaskData, taskData } = TaskState();
   const disclosure = useDisclosure();
 
   const { onClose } = disclosure;
@@ -25,7 +25,7 @@ function CreateTask() {
         },
       };
       const { data } = await axios.post("/api/task", taskInput, config);
-      const newTaskData=[...taskData,{...data.task}];
+      const newTaskData = [...taskData, { ...data.task }];
       // console.log(newTaskData);
       setTaskData(newTaskData);
       toast({
@@ -59,14 +59,13 @@ function CreateTask() {
       }}
       validate={(values) => {
         const errors = {};
-        const time=new Date(values.endDate).getTime();
-        const currentTime=new Date().getTime();
-        if(time<currentTime){
-          errors.endDate="Time must be greater than current time";
+        const time = new Date(values.endDate).getTime();
+        const currentTime = new Date().getTime();
+        if (time < currentTime) {
+          errors.endDate = "Time must be greater than current time";
         }
         return errors;
       }}
-
       onSubmit={(values, { setSubmitting, resetForm }) => {
         console.log(values);
         createTaskHandler(values)
@@ -133,7 +132,9 @@ function CreateTask() {
             isLoading={isSubmitting}
             values={values}
             handleSubmit={handleSubmit}
-            className={"hidden md:block sticky top-20 "}
+            className={
+              "hidden md:flex sticky top-20 justify-center items-center"
+            }
           />
         </>
       )}

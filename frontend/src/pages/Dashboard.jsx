@@ -8,15 +8,14 @@ import { UserState } from "../context/AuthProvider";
 import { TaskState } from "../context/TaskProvider";
 import { useToast } from "@chakra-ui/react";
 
-
 function Dashboard() {
   const { user } = UserState();
   const [searchInput, setSearchInput] = useState("");
-  const toast=useToast();
+  const toast = useToast();
 
-  const {taskData,setTaskData}=TaskState();
+  const { taskData, setTaskData } = TaskState();
   useEffect(() => {
-    if(!user) return;
+    if (!user) return;
     const getAllTask = async () => {
       try {
         const config = {
@@ -24,24 +23,27 @@ function Dashboard() {
             Authorization: `Bearer ${user.token}`,
           },
         };
-        const {data} = await axios.get("/api/task", config);
-        setTaskData([ ...data.tasks]);
+        const { data } = await axios.get("/api/task", config);
+        setTaskData([...data.tasks]);
         console.log(data.tasks);
       } catch (error) {
         console.log(error);
       }
     };
     getAllTask();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
   const searchHandler = () => {
     if (!searchInput) return;
 
-    const searchedData=taskData.filter((task) => {
-      return task.name.toLowerCase().includes(searchInput.toLowerCase()) || task.description.toLowerCase().includes(searchInput.toLowerCase());
-    })
-    if(searchedData.length===0){
+    const searchedData = taskData.filter((task) => {
+      return (
+        task.name.toLowerCase().includes(searchInput.toLowerCase()) ||
+        task.description.toLowerCase().includes(searchInput.toLowerCase())
+      );
+    });
+    if (searchedData.length === 0) {
       toast({
         title: "Task Not Found",
         description: "No Task Found",
@@ -49,10 +51,12 @@ function Dashboard() {
         duration: 3000,
         isClosable: true,
         position: "top-right",
-    });
-
+      });
     }
-    setTaskData([...searchedData,...taskData.filter((task) => !searchedData.includes(task))]);
+    setTaskData([
+      ...searchedData,
+      ...taskData.filter((task) => !searchedData.includes(task)),
+    ]);
     setSearchInput("");
   };
 
@@ -64,8 +68,8 @@ function Dashboard() {
         setSearchInput={setSearchInput}
       />
       <div className="flex flex-row justify-between  flex-wrap-reverse p-1 pt-2 sm:p-4 mt-10 md:mt-16">
-        <TodoListRender  />
-        <div className="flex flex-col gap-4 mb-2 sm:ml-2 w-screen sm:w-fit  p-4 rounded">
+        <TodoListRender />
+        <div className="flex flex-col gap-4 mb-2 w-full sm:ml-2 lg:w-fit p-4 rounded">
           {/* Create a Task */}
           <CreateTask />
         </div>
