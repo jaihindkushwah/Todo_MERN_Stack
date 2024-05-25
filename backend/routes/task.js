@@ -4,11 +4,9 @@ const {
   getAllTask,
   updateTask,
   deleteTask,
-  
 } = require("../controller/task");
 
 const mustAuth = require("../middleware/isAuthenticated");
-
 // create
 router.post("/", mustAuth, createTask);
 

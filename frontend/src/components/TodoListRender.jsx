@@ -1,7 +1,6 @@
 import React, { useRef } from "react";
 import TaskItemCard from "./task/TaskItemCard";
 
-
 import { TaskState } from "../context/TaskProvider";
 
 function TodoListRender() {
@@ -12,9 +11,28 @@ function TodoListRender() {
   const draggedOverTask = useRef(0);
   const handleSort = () => {
     const tasksClone = [...taskData];
+    // console.log(dragTask.current, draggedOverTask.current);
+    // const newArr = tasksClone
+    //   .map((item, index) => {
+    //     if (draggedOverTask.current === index) {
+    //       return tasksClone[dragTask.current];
+    //     } else if (index === dragTask.current) {
+    //       return null;
+    //     }
+    //     return item;
+    //   })
+    //   .map((item) => {
+    //     if (item === null) {
+    //       console.log("null");
+    //       return tasksClone[draggedOverTask.current];
+    //     }
+    //     return item;
+    //   });
+    // console.log(newArr);
     const temp = tasksClone[dragTask.current];
     tasksClone[dragTask.current] = tasksClone[draggedOverTask.current];
     tasksClone[draggedOverTask.current] = temp;
+
     setTaskData(tasksClone);
   };
 
@@ -23,25 +41,23 @@ function TodoListRender() {
       <h1 className=" text-2xl sm:text-3xl font-bold text-center mb-6">
         Tasks
       </h1>
-      <div
-        className="flex flex-wrap justify-around items-center ease-in delay-1000"
-      >
+      <div className="flex flex-wrap justify-around items-center ease-in delay-1000">
         {taskData?.length === 0 && (
           <p className="text-center text-[16px] text-orange-500">
             No tasks found
           </p>
         )}
         {taskData?.map((item, index) => (
-            <TaskItemCard
-              draggable
-              onDragStart={() => (dragTask.current = index)}
-              onDragEnter={() => (draggedOverTask.current = index)}
-              onDragEnd={handleSort}
-              onDragOver={(e) => e.preventDefault()}
-              key={item._id}
-              task={item}
-              className={"mb-5"}
-            />
+          <TaskItemCard
+            draggable
+            onDragStart={() => (dragTask.current = index)}
+            onDragEnter={() => (draggedOverTask.current = index)}
+            onDragEnd={handleSort}
+            onDragOver={(e) => e.preventDefault()}
+            key={item._id}
+            task={item}
+            className={"mb-5"}
+          />
         ))}
       </div>
     </div>
