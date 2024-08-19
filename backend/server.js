@@ -13,9 +13,9 @@ const port = process.env.PORT || 5000;
 app.use("/api/user", userRouter);
 
 app.use("/api/task", taskRouter);
-app.get("/home", (req, res) => {
-  res.status(200).json({ message: "You are now on home page. " });
-});
+// app.get("/home", (req, res) => {
+//   res.status(200).json({ message: "You are now on home page. " });
+// });
 
 const __dirname1 = path.resolve();
 if (process.env.NODE_ENV === "production") {
